@@ -1,6 +1,8 @@
 import Navbar from "@/ui/navbar/navbar";
-import "../ui/globals.css";
-import { mulish } from "@/ui/fonts";
+import "@/ui/globals.css";
+import styles from "./page.module.css";
+import "@/ui/buttons.css";
+import { mulish, blackHanSans } from "@/ui/fonts";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,8 +15,10 @@ export default function RootLayout({ children }) {
       <head>
         <title>Basket Places</title>
       </head>
-      <body className={`${mulish.className} antialiased`}>
-        <main>{children}</main>
+      <body
+        className={`${mulish.className} antialiased ${blackHanSans.variable}`}
+      >
+        <main className={styles.main}>{children}</main>
 
         <Navbar />
       </body>

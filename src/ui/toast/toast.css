@@ -1,0 +1,44 @@
+.notification {
+  position: fixed;
+  top: -30vh; /* Valor suficientemente grande para que esté fuera de la pantalla */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 60rem;
+  height: auto;
+  background-color: var(--accent);
+  animation: slide-in-out 3.5s ease-in-out;
+  padding: 1rem 1.5rem;
+  border-radius: 1.2rem;
+  z-index: 5;
+  width: 95%;
+}
+.notification__message {
+  color: var(--secundary);
+  font-size: 2.3rem;
+  line-height: normal;
+  text-align: center;
+}
+
+/*variantes */
+.notification[data-variant="error"] {
+  background-color: #d72f2f;
+}
+.notification[data-variant="info"] {
+  background-color: var(--accent);
+}
+
+@keyframes slide-in-out {
+  0% {
+    top: -30vh;
+  }
+  10% {
+    top: 2%;
+  }
+  90% {
+    top: 2%;
+  }
+  100% {
+    top: -30vh;
+  }
+}

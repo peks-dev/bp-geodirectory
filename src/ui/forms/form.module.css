@@ -1,0 +1,131 @@
+.form__overlay {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: var(--secundary);
+  gap: 2.5rem;
+  border-radius: 0 0 1.2rem 1.2rem;
+  max-width: 700px;
+  margin: auto;
+}
+.form__container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+.form__close {
+  /* El btn svg */
+  background-color: var(--accent);
+  color: var(--ternary);
+  padding: 0.2rem 1.2rem;
+  border-radius: 2rem;
+  transition: transform 0.2s linear;
+}
+.form__close:hover {
+  color: var(--secundary);
+}
+.form__close:active {
+  transform: scale(1.1);
+}
+
+.form__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form__title {
+  font-family: var(--black-hans);
+  font-size: 2.3rem;
+  text-transform: uppercase;
+}
+.form__field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.form__legend {
+  font-size: clamp(1.6rem, 3vw, 1.8rem);
+  color: var(--text);
+  line-height: normal;
+  text-align: center;
+  width: 100%;
+}
+.form__label {
+  font-family: var(--black-hans);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  line-height: normal;
+  width: 100%;
+}
+.form__input {
+  font-size: 2rem;
+}
+/* Los largos */
+.form__input[type="text"],
+.form__input[type="email"],
+.form__input[type="password"] {
+  color: var(--text);
+  width: 100%;
+  margin: 0 auto;
+  line-height: normal;
+  border-radius: 1.2rem;
+  background-color: var(--ternary);
+  padding: 0.5rem 0 0.5rem 1rem;
+  font-size: 1.8rem;
+}
+/* Los redondos */
+.form__input[type="radio"],
+.form__input[type="checkbox"] {
+  width: 1.2em;
+  height: 1.2em;
+  background-color: var(--text);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.form__input[type="time"] {
+  width: 100%;
+  height: 4.5rem;
+  background-color: var(--ternary);
+  border-radius: 1.2rem;
+  color: var(--accent);
+  font-size: clamp(2.2rem, 3.2vw, 2.8rem);
+  font-family: var(--font-title);
+  line-height: normal;
+  text-align: center;
+}
+
+/* pseudo - selectores */
+.form__input[type="radio"]:checked,
+.form__input[type="checkbox"]:checked {
+  background-color: var(--accent);
+}
+
+.form__input[type="text"]:focus,
+.form__input[type="email"]:focus,
+.form__input[type="password"]:focus {
+  outline: none;
+  background-color: var(--accent);
+}
+
+/* Form Step para tipo radio y tipo checkbox */
+.form__fields-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.form__fields-wrap fieldset {
+  flex: 1 0 4rem;
+}
+.form__fields-wrap label {
+  display: none;
+}
