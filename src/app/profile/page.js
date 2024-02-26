@@ -1,3 +1,4 @@
+"use server";
 import AuthForm from "@/ui/forms/auth-form/auth-form";
 import { LogoutBtn } from "@/ui/logout/logout-btn";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
@@ -10,8 +11,6 @@ export default async function Profile() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-
-  console.log(user);
 
   if (user === null) {
     return (
