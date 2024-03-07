@@ -102,7 +102,10 @@ em {
   text-decoration: none;
   color: inherit;
 }
-
+p {
+  font-size: clamp(2rem, 2.5vw, 2.3rem);
+  line-height: normal;
+}
 /* Evitamos problemas con los pseudoelementos de quotes */
 blockquote:before,
 blockquote:after,
