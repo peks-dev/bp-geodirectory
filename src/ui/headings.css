@@ -1,0 +1,10 @@
+.title {
+  font-family: var(--black-hans);
+  color: var(--text);
+  text-transform: uppercase;
+  line-height: normal;
+}
+
+.title--xlg {
+  font-size: 4rem;
+}
