@@ -19,6 +19,7 @@ import {
   registerAccountDiv,
   passRecoveryDiv,
 } from "./auth-switcher";
+import { useUserStore } from "@/context/user-store";
 
 import { CloseIcon } from "@/ui/icons/close-btn";
 import Toast from "@/ui/toast/toast";
@@ -32,12 +33,13 @@ export default function AuthForm() {
   const [showToast, setShowToast] = useState(false);
   const [toastType, setToastType] = useState("");
   const [toastMessage, setToastMessage] = useState("");
+  const { loginUser } = useUserStore();
 
   const router = useRouter();
 
-  async function signIn() {
+  async function handleLoging() {
     try {
-      await login(email, password);
+      await loginUser(email, password);
       router.refresh();
     } catch (error) {
       if (error.toString() === "AuthApiError: Invalid login credentials") {
@@ -46,6 +48,7 @@ export default function AuthForm() {
         setShowToast(true);
         resetNotification(setShowToast);
       }
+      console.log(error);
     }
   }
 
@@ -91,7 +94,7 @@ export default function AuthForm() {
 
     switch (action) {
       case "signIn":
-        signIn();
+        handleLoging();
         break;
       case "signUp":
         signUp();

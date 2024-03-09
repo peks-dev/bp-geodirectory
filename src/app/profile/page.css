@@ -1,0 +1,5 @@
+.profile__name {
+  font-size: 2rem;
+  font-family: var(--black-hans);
+  color: var(--text);
+}

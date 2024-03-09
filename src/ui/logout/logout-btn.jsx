@@ -1,13 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
-
-import { logout } from "@/services/supabase/auth.service";
+import { useUserStore } from "@/context/user-store";
 
 export const LogoutBtn = () => {
   const router = useRouter();
+  const { logOut } = useUserStore();
   async function handleLogout() {
     try {
-      await logout();
+      await logOut();
       router.refresh();
     } catch (error) {
       console.log(error);

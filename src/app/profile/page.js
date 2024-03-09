@@ -1,18 +1,18 @@
-"use server";
+"use client";
 import AuthForm from "@/ui/forms/auth-form/auth-form";
 import { LogoutBtn } from "@/ui/logout/logout-btn";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import { useUserStore } from "@/context/user-store";
 
-export default async function Profile() {
-  const cookiesStore = cookies();
-  const supabase = createServerComponentClient({ cookies: () => cookiesStore });
+import { useEffect } from "react";
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+const Profile = () => {
+  const { session, apodo } = useUserStore();
+  useEffect(() => {
+    useUserStore.persist.rehydrate();
+  }, []);
 
-  if (user === null) {
+  console.log(apodo);
+  if (session === undefined) {
     return (
       <section className="profile-page">
         <AuthForm />
@@ -23,7 +23,10 @@ export default async function Profile() {
   return (
     <section className="profile-page">
       <h1>usuario logueado</h1>
+      <p className="profile__name">{apodo}</p>
       <LogoutBtn />
     </section>
   );
-}
+};
+
+export default Profile;
