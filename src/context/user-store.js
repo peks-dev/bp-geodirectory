@@ -1,4 +1,4 @@
-import { login, logout } from "@/services/supabase/auth.service";
+import { login, logout, register } from "@/services/supabase/auth.service";
 import { fetchDataOnTable } from "@/services/supabase/table-operations.service";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";

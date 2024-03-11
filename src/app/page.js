@@ -1,5 +1,3 @@
-"use client"; // requisito para usePathname
-// Mapa page
 import styles from "./page.module.css";
 import Map from "@/ui/map/Map";
 

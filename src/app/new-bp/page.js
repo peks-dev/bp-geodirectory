@@ -1,16 +1,32 @@
 "use client";
 import NewBpOnboarding from "@/ui/onboardings/new-bp-onboarding";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./page.css";
-import { useUserStore } from "@/context/user-store";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { getSession } from "@/services/supabase/auth.service";
 
 export default function NewBp() {
   const [start, setStart] = useState(false);
-  const { id } = useUserStore();
+  const [session, setSession] = useState(null);
+  const supabase = createClientComponentClient();
+
+  useEffect(() => {
+    async function fetchSession() {
+      try {
+        const { data } = await getSession(supabase);
+        setSession(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching session:", error);
+      }
+    }
+
+    fetchSession();
+  }, [session]);
 
   return (
     <>
-      {start && id ? (
+      {start && session ? (
         <div>formulario multi-step</div>
       ) : (
         <NewBpOnboarding setState={setStart} />
