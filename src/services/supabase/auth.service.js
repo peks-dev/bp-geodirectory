@@ -1,6 +1,4 @@
-import { supabase } from "./client.service";
-
-export async function login(userEmail, userPassword) {
+export async function login(supabase, userEmail, userPassword) {
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
       email: userEmail,
@@ -20,7 +18,7 @@ export async function login(userEmail, userPassword) {
   }
 }
 
-export async function logout() {
+export async function logout(supabase) {
   try {
     const { error } = await supabase.auth.signOut();
     if (error) {
@@ -31,7 +29,7 @@ export async function logout() {
   }
 }
 
-export async function register(userEmail, userPassword) {
+export async function register(supabase, userEmail, userPassword) {
   try {
     const { data, error } = await supabase.auth.signUp({
       email: userEmail,
@@ -50,19 +48,19 @@ export async function register(userEmail, userPassword) {
   }
 }
 
-export async function getSession() {
+export async function getSession(supabase) {
   try {
     const { data, error } = await supabase.auth.getSession();
     if (error) {
-      return console.log("error: ", error);
+      throw error;
     }
-    return data.session;
+    return data;
   } catch (error) {
-    return error;
+    throw error;
   }
 }
 
-export async function recoveryPass(userEmail) {
+export async function recoveryPass(supabase, userEmail) {
   try {
     const { data, error } = await supabase.auth.resetPasswordForEmail(
       userEmail,
@@ -78,7 +76,7 @@ export async function recoveryPass(userEmail) {
   }
 }
 
-export async function updatePassword(newPassword) {
+export async function updatePassword(supabase, newPassword) {
   try {
     const { data, error } = await supabase.auth.updateUser({
       password: newPassword,
@@ -92,7 +90,7 @@ export async function updatePassword(newPassword) {
   }
 }
 
-export async function deleteUserAuth(userId) {
+export async function deleteUserAuth(supabase, userId) {
   try {
     const { data, error } = await supabase.rpc("delete_user_auth", {
       user_id: userId,
