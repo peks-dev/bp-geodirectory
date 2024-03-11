@@ -4,7 +4,7 @@ import { updatePassword } from "@/services/supabase/auth.service";
 import { useState } from "react";
 
 // components
-import Toast from "@/ui/toast/Toast";
+import Toast from "@/ui/toast/toast";
 
 import style from "@/ui/forms/form.module.css";
 

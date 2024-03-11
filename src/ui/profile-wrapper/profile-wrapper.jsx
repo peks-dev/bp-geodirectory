@@ -1,5 +1,5 @@
 // components
-import ProfileHeader from "../profileHeader/ProfileHeader";
+import ProfileHeader from "../profile-header/profile-header";
 
 export default async function ProfileWrapper({ userId }) {
   return (

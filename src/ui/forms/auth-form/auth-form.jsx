@@ -20,9 +20,9 @@ import {
 } from "./components/auth-switcher";
 import AuthHeader from "./components/auth-header";
 import FieldForm from "../field-form";
-import Button from "@/ui/button/Button";
+import Button from "@/ui/button/button";
 
-import Toast from "@/ui/toast/Toast";
+import Toast from "@/ui/toast/toast";
 
 export default function AuthForm() {
   const [action, setAction] = useState("signIn");
