@@ -1,0 +1,31 @@
+.btn {
+  align-self: center;
+  cursor: pointer;
+}
+
+/* states */
+.btn:hover {
+  color: var(--secundary);
+}
+.btn:active,
+.btn--link:hover {
+  transform: scale(1.1);
+}
+
+/* Variants */
+.btn--primary {
+  font-family: var(--black-hans);
+  background-color: var(--accent);
+  color: var(--ternary);
+  font-size: 1.5rem;
+  border-radius: 1.5rem;
+  padding: 1rem 1.5rem;
+  transition: transform 0.2s linear;
+}
+
+.btn--link {
+  text-decoration: underline;
+}
+.btn--link:hover {
+  color: var(--text);
+}
