@@ -20,7 +20,7 @@ import {
 } from "./components/auth-switcher";
 import AuthHeader from "./components/auth-header";
 import FieldForm from "../field-form";
-import Button from "@/ui/button/button";
+import Button from "@/ui/btn/button";
 
 import Toast from "@/ui/toast/toast";
 

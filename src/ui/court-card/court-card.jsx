@@ -1,4 +1,4 @@
-import Button from "@/ui/button/button";
+import Button from "@/ui/btn/button";
 import Link from "next/link";
 import "./court-card.css";
 

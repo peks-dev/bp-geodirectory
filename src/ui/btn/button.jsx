@@ -1,5 +1,5 @@
 "use client";
-import "./buttons.css";
+import "./button.css";
 
 const Button = ({ type, onClick, variant, children }) => {
   return (

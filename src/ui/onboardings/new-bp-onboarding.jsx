@@ -1,5 +1,5 @@
 import { RegisterBpIcon } from "@/ui/icons/new-bp-icon";
-import Button from "@/ui/button/button";
+import Button from "@/ui/btn/button";
 import "./onboarding.css";
 
 const NewBpOnboarding = ({ setState }) => {
