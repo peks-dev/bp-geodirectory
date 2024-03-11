@@ -125,7 +125,7 @@ export default function AuthForm() {
             stateFn={setPassword}
           />
         )}
-        <Button type={"submit"} variant={"btn--primary"}>
+        <Button type={"submit"} variant={"primary"}>
           {actionSelected.submitBtnText}
         </Button>
 

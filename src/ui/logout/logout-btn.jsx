@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { logout } from "@/services/supabase/auth.service";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import Button from "../button/button";
+import Button from "@/ui/button/button";
 
 export const LogoutBtn = () => {
   const supabase = createClientComponentClient();

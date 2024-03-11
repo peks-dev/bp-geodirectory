@@ -1,5 +1,5 @@
 import { RegisterBpIcon } from "@/ui/icons/new-bp-icon";
-import Button from "../button/button";
+import Button from "@/ui/button/button";
 import "./onboarding.css";
 
 const NewBpOnboarding = ({ setState }) => {
@@ -17,7 +17,7 @@ const NewBpOnboarding = ({ setState }) => {
         Comparte tu cancha, crea encuentros memorables y forma parte de la
         comunidad que impulsa el juego en cada rincón.
       </p>
-      <Button type={"button"} onClick={handleState} variant={"btn--primary"}>
+      <Button type={"button"} onClick={handleState} variant={"primary"}>
         agregar
       </Button>
     </div>
