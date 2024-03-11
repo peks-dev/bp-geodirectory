@@ -10,19 +10,19 @@ import {
   register,
   recoveryPass,
 } from "@/services/supabase/auth.service";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-import { supabase } from "@/services/supabase/client.service";
-
-// form navigation elements
+// Form components
 import {
   ingressAccountDiv,
   registerAccountDiv,
   passRecoveryDiv,
-} from "./auth-switcher";
-import { useUserStore } from "@/context/user-store";
+} from "./components/auth-switcher";
+import AuthHeader from "./components/auth-header";
+import FieldForm from "../field-form";
+import Button from "@/ui/button/Button";
 
-import { CloseIcon } from "@/ui/icons/close-btn";
-import Toast from "@/ui/toast/toast";
+import Toast from "@/ui/toast/Toast";
 
 export default function AuthForm() {
   const [action, setAction] = useState("signIn");
@@ -33,144 +33,107 @@ export default function AuthForm() {
   const [showToast, setShowToast] = useState(false);
   const [toastType, setToastType] = useState("");
   const [toastMessage, setToastMessage] = useState("");
-  const { loginUser } = useUserStore();
+
+  const supabase = createClientComponentClient();
 
   const router = useRouter();
 
+  function handleError(error) {
+    setToastType("error");
+    setToastMessage(error.toString());
+    setShowToast(true);
+    resetNotification(setShowToast);
+  }
+
+  const actions = [
+    {
+      name: "signUp",
+      submitBtnText: "registrarse",
+      headerTitle: "crear cuenta",
+      fn: handleSignUp,
+    },
+    {
+      name: "signIn",
+      submitBtnText: "ingresar cuenta",
+      headerTitle: "iniciar sesion",
+      fn: handleLoging,
+    },
+    {
+      name: "recoveryPass",
+      submitBtnText: "recuperar",
+      headerTitle: "recuperar cuenta",
+      fn: handleRecoveryPass,
+    },
+  ];
+
+  const actionSelected = actions.find((e) => e.name === action);
+
   async function handleLoging() {
     try {
-      await loginUser(email, password);
+      await login(supabase, email, password);
       router.refresh();
     } catch (error) {
-      if (error.toString() === "AuthApiError: Invalid login credentials") {
-        setToastMessage("usuario o contraseña incorrecto");
-        setToastType("error");
-        setShowToast(true);
-        resetNotification(setShowToast);
-      }
-      console.log(error);
+      handleError(error);
     }
   }
 
-  async function signUp() {
+  async function handleSignUp() {
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          emailRedirectTo: `${location.origin}/auth/callback`,
-        },
-      });
-
-      if (error) {
-        throw error;
-      }
-      setToastMessage("");
+      await register(supabase, email, password);
+      setToastMessage("Checa tu mail perro");
       setToastType("info");
       showToast(true);
       setEmail("");
       setPassword("");
       router.refresh();
     } catch (error) {
-      setToastType("error");
-      setToastMessage(error.toString());
-      setShowToast(true);
-      resetNotification(setShowToast);
+      handleError(error);
     }
   }
 
-  async function recovery() {
+  async function handleRecoveryPass() {
     try {
-      await recoveryPass(email);
+      await recoveryPass(supabase, email);
     } catch (error) {
-      setToastMessage(error.toString());
-      setToastType("error");
-      setShowToast(true);
+      handleError(error);
     }
   }
-
-  const handleSendForm = (e) => {
-    e.preventDefault();
-
-    switch (action) {
-      case "signIn":
-        handleLoging();
-        break;
-      case "signUp":
-        signUp();
-        break;
-      case "recovery":
-        recovery();
-        break;
-    }
-  };
-
-  const formTitle = () => {
-    switch (action) {
-      case "signIn":
-        return "iniciar sesion";
-      case "signUp":
-        return "crear cuenta";
-      case "recovery":
-        return "recuperar cuenta";
-    }
-  };
-
-  const btnFormText = () => {
-    switch (action) {
-      case "signIn":
-        return "ingresar a cuenta";
-      case "signUp":
-        return "registrarme";
-      case "recovery":
-        return "recuperar";
-    }
-  };
 
   return (
     <div className={styles.form__overlay}>
-      <form onSubmit={handleSendForm} className={styles.formWrapper}>
-        <header className={styles.form__header}>
-          <button className={styles.form__close} type="button">
-            <CloseIcon />
-          </button>
-          <h2 className={styles.form__title}>{formTitle()}</h2>
-        </header>
-        <div className={styles.form__field}>
-          <label className={styles.form__label} htmlFor="email">
-            email
-          </label>
-          <input
-            name="email"
-            className={styles.form__input}
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          actionSelected.fn();
+        }}
+        className={styles.formWrapper}
+      >
+        <AuthHeader text={actionSelected.headerTitle} />
+        <FieldForm
+          inputName={"email"}
+          inputType={"email"}
+          labelText={"email"}
+          stateValue={email}
+          stateFn={setEmail}
+        />
         {action !== "recovery" && ( // evitar mostrarse en recuperar contraseña
-          <div className={styles.form__field}>
-            <label className={styles.form__label} htmlFor="password">
-              password
-            </label>
-            <input
-              name="password"
-              className={styles.form__input}
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <FieldForm
+            inputName={"password"}
+            inputType={"password"}
+            labelText={"password"}
+            stateValue={password}
+            stateFn={setPassword}
+          />
         )}
+        <Button type={"submit"} variant={"btn--primary"}>
+          {actionSelected.submitBtnText}
+        </Button>
 
-        <button type="submit" className="btn btn--primary">
-          {btnFormText()}
-        </button>
         <div>
           {action === "signIn" && passRecoveryDiv(setAction)}
           {(action === "recovery" || action === "signIn") &&
             registerAccountDiv(setAction)}
-          {(action === "signUp" || action === "recovery") &&
+          {(action === "signUp" || action === "recoveryPass") &&
             ingressAccountDiv(setAction)}
         </div>
       </form>
