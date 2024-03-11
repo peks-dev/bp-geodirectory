@@ -3,3 +3,6 @@
   font-family: var(--black-hans);
   color: var(--text);
 }
+.profile-page {
+  height: 100%;
+}
