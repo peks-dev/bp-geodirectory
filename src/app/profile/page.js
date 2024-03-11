@@ -1,32 +1,19 @@
-"use client";
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
+import { getSession } from "@/services/supabase/auth.service";
 import AuthForm from "@/ui/forms/auth-form/auth-form";
-import { LogoutBtn } from "@/ui/logout/logout-btn";
-import { useUserStore } from "@/context/user-store";
+import ProfileCard from "@/ui/profile-card/ProfileCard";
+import "./page.css";
 
-import { useEffect } from "react";
-
-const Profile = () => {
-  const { session, apodo } = useUserStore();
-  useEffect(() => {
-    useUserStore.persist.rehydrate();
-  }, []);
-
-  console.log(apodo);
-  if (session === undefined) {
-    return (
-      <section className="profile-page">
-        <AuthForm />
-      </section>
-    );
-  }
+export default async function Profile() {
+  const supabase = createServerActionClient({
+    cookies,
+  });
+  const { session } = await getSession(supabase);
 
   return (
     <section className="profile-page">
-      <h1>usuario logueado</h1>
-      <p className="profile__name">{apodo}</p>
-      <LogoutBtn />
+      {session ? <ProfileCard id={session.user.id} /> : <AuthForm />}
     </section>
   );
-};
-
-export default Profile;
+}
