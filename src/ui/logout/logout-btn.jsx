@@ -18,7 +18,7 @@ export const LogoutBtn = () => {
 
   return (
     <>
-      <Button onClick={handleLogout} type={"button"} variant={"btn--primary"}>
+      <Button onClick={handleLogout} type={"button"} variant={"secundary"}>
         cerrar session
       </Button>
     </>
