@@ -1,0 +1,35 @@
+.profile-header {
+  width: 100%;
+  background-color: var(--accent);
+  border-radius: 0 0 1.2rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5%;
+}
+.profile__info {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.profile__name {
+  font-size: 2.5rem;
+  font-family: var(--black-hans);
+  color: var(--primary);
+  text-transform: uppercase;
+}
+.profile__website {
+  font-size: 1.8rem;
+  color: var(--primary);
+  text-decoration: underline;
+}
+.profile__avatar {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 0.5rem solid var(--ternary);
+  overflow: hidden;
+}
+.profile__avatar img {
+  height: 100%;
+}
