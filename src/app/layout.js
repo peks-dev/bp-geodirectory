@@ -1,6 +1,5 @@
 import Navbar from "@/ui/navbar/navbar";
 import "@/ui/globals.css";
-import "@/ui/buttons.css";
 import "@/ui/headings.css";
 import styles from "./page.module.css";
 import { mulish, blackHanSans } from "@/ui/fonts";
