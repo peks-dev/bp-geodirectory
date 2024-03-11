@@ -1,13 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useUserStore } from "@/context/user-store";
+import { logout } from "@/services/supabase/auth.service";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import Button from "../button/Button";
 
 export const LogoutBtn = () => {
+  const supabase = createClientComponentClient();
   const router = useRouter();
-  const { logOut } = useUserStore();
   async function handleLogout() {
     try {
-      await logOut();
+      await logout(supabase);
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -16,9 +18,9 @@ export const LogoutBtn = () => {
 
   return (
     <>
-      <button className="btn btn--primary" onClick={handleLogout} type="button">
-        cerrar sesion
-      </button>
+      <Button onClick={handleLogout} type={"button"} variant={"btn--primary"}>
+        cerrar session
+      </Button>
     </>
   );
 };
