@@ -2,7 +2,7 @@ import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { LogoutBtn } from "../logout/logout-btn";
 import { Suspense } from "react";
-import "./profileHeader.css";
+import "./profile-header.css";
 
 export default async function ProfileHeader({ id }) {
   const supabase = createServerActionClient({ cookies });

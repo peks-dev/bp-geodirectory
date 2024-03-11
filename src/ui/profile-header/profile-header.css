@@ -15,7 +15,7 @@
 .profile__name {
   font-size: 2.5rem;
   font-family: var(--black-hans);
-  color: var(--primary);
+  color: var(--secundary);
   text-transform: uppercase;
 }
 .profile__website {
@@ -27,7 +27,7 @@
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
-  border: 0.5rem solid var(--ternary);
+  border: 0.5rem solid var(--secundary);
   overflow: hidden;
 }
 .profile__avatar img {
