@@ -4,8 +4,6 @@ import { NextResponse } from 'next/server'
 export async function middleware(req) {
   const res = NextResponse.next()
 
-  console.log("ejecutando mdlw")
-
   // Create a Supabase client configured to use cookies
   const supabase = createMiddlewareClient({ req, res })
 
