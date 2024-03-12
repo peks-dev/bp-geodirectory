@@ -1,11 +1,12 @@
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { LogoutBtn } from "../logout/logout-btn";
 import { Suspense } from "react";
 import "./profile-header.css";
 
 export default async function ProfileHeader({ id }) {
-  const supabase = createServerActionClient({ cookies });
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookieStore });
   const { data: user } = await supabase.from("profiles").select().eq("id", id);
   return (
     <header className="profile-header">

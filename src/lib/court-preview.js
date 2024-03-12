@@ -4,6 +4,7 @@ export async function courtPreview(courtData) {
   const court = new CourtModel();
   court.name = courtData.name;
   court.id = courtData.id;
+  court.game_level = courtData.game_level;
 
   return court;
   // traer todas las imagenes de la tabla imagenes

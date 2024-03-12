@@ -1,18 +1,8 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { resetNotification } from "@/utilities/reset-notification.utilitie";
 import styles from "@/ui/forms/form.module.css";
 
-// supabase functions
-import {
-  login,
-  register,
-  recoveryPass,
-} from "@/services/supabase/auth.service";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-
-// Form components
+// Components
 import {
   ingressAccountDiv,
   registerAccountDiv,
@@ -21,94 +11,43 @@ import {
 import AuthHeader from "./components/auth-header";
 import FieldForm from "../field-form";
 import Button from "@/ui/btn/button";
-
-import Toast from "@/ui/toast/toast";
-
 export default function AuthForm() {
   const [action, setAction] = useState("signIn");
-  // form states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // toast states
-  const [showToast, setShowToast] = useState(false);
-  const [toastType, setToastType] = useState("");
-  const [toastMessage, setToastMessage] = useState("");
-
-  const supabase = createClientComponentClient();
-
-  const router = useRouter();
-
-  function handleError(error) {
-    setToastType("error");
-    setToastMessage(error.toString());
-    setShowToast(true);
-    resetNotification(setShowToast);
-  }
 
   const actions = [
     {
       name: "signUp",
       submitBtnText: "registrarse",
       headerTitle: "crear cuenta",
-      fn: handleSignUp,
+      actionForm: "/auth/sign-up",
     },
     {
       name: "signIn",
       submitBtnText: "ingresar cuenta",
       headerTitle: "iniciar sesion",
-      fn: handleLoging,
+      actionForm: "/auth/login",
     },
     {
       name: "recoveryPass",
       submitBtnText: "recuperar",
       headerTitle: "recuperar cuenta",
-      fn: handleRecoveryPass,
+      actionForm: "/auth/recovery",
     },
   ];
 
   const actionSelected = actions.find((e) => e.name === action);
 
-  async function handleLoging() {
-    try {
-      await login(supabase, email, password);
-      router.refresh();
-    } catch (error) {
-      handleError(error);
-    }
-  }
-
-  async function handleSignUp() {
-    try {
-      await register(supabase, email, password);
-      setToastMessage("Checa tu mail perro");
-      setToastType("info");
-      showToast(true);
-      setEmail("");
-      setPassword("");
-      router.refresh();
-    } catch (error) {
-      handleError(error);
-    }
-  }
-
-  async function handleRecoveryPass() {
-    try {
-      await recoveryPass(supabase, email);
-    } catch (error) {
-      handleError(error);
-    }
-  }
-
   return (
     <div className={styles.form__overlay}>
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          actionSelected.fn();
-        }}
+        action={actionSelected.actionForm}
         className={styles.formWrapper}
+        method="post"
       >
         <AuthHeader text={actionSelected.headerTitle} />
+        <input type="hidden" name="redirectUrl" value={window.location.href} />
         <FieldForm
           inputName={"email"}
           inputType={"email"}
@@ -116,7 +55,7 @@ export default function AuthForm() {
           stateValue={email}
           stateFn={setEmail}
         />
-        {action !== "recovery" && ( // evitar mostrarse en recuperar contraseña
+        {action !== "recovery" && ( // No show input password on recovery pass
           <FieldForm
             inputName={"password"}
             inputType={"password"}
@@ -137,7 +76,6 @@ export default function AuthForm() {
             ingressAccountDiv(setAction)}
         </div>
       </form>
-      {showToast && <Toast message={toastMessage} type={toastType} />}
     </div>
   );
 }

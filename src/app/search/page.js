@@ -5,30 +5,23 @@ import { courtPreview } from "@/lib/court-preview";
 
 export const revalidate = 60;
 
-async function getCourts() {
-  const supabase = createServerComponentClient({ cookies });
+export default async function SearchPage() {
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookieStore });
 
   const { data } = await supabase.from("courts").select("*");
-
-  let courts = [];
-
+  const courts = [];
   await Promise.all(
     data.map(async (court) => {
       const newCourt = await courtPreview(court);
       courts.push(newCourt);
     })
   );
-  return courts;
-}
-
-export default async function SearchPage() {
-  const courts = await getCourts();
 
   if (!courts.length) {
     return <div>no hay data</div>;
   }
 
-  console.log(courts);
   return (
     <div>
       <h1>search page</h1>
