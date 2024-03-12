@@ -10,6 +10,8 @@ export default async function Profile() {
   const supabase = createServerComponentClient({ cookies: () => cookieStore });
   const { session } = await getSession(supabase);
 
+  console.log(session);
+
   return (
     <section className="profile-page">
       {session ? <ProfileWrapper userId={session.user.id} /> : <AuthForm />}

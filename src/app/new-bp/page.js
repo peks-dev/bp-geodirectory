@@ -1,36 +1,19 @@
-"use client";
-import NewBpOnboarding from "@/ui/onboardings/new-bp-onboarding";
 import { getSession } from "@/services/supabase/auth.service.js";
-import { useEffect, useState } from "react";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 import "./page.css";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-export default function NewBp() {
-  const [start, setStart] = useState(false);
-  const [session, setSession] = useState(null);
-  const supabase = createClientComponentClient();
+// components
+import StepForm from "@/ui/forms/step-form/step-form";
 
-  useEffect(() => {
-    async function fetchSession() {
-      try {
-        const { data } = await getSession(supabase);
-        setSession(data);
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching session:", error);
-      }
-    }
-
-    fetchSession();
-  }, [session]);
+export default async function NewBp() {
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookieStore });
+  const { session } = await getSession(supabase);
 
   return (
     <>
-      {start && session ? (
-        <div>formulario multi-step</div>
-      ) : (
-        <NewBpOnboarding setState={setStart} />
-      )}
+      <StepForm session={session} />
     </>
   );
 }
