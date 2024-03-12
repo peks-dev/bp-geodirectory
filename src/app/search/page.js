@@ -5,7 +5,7 @@ import { courtPreview } from "@/lib/court-preview";
 
 export const revalidate = 60;
 
-export default async function SearchPage() {
+async function getCourts() {
   const supabase = createServerComponentClient({ cookies });
 
   const { data } = await supabase.from("courts").select("*");
@@ -18,6 +18,11 @@ export default async function SearchPage() {
       courts.push(newCourt);
     })
   );
+  return courts;
+}
+
+export default async function SearchPage() {
+  const courts = await getCourts();
 
   if (!courts.length) {
     return <div>no hay data</div>;
