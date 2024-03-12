@@ -1,9 +1,9 @@
 "use client";
 import NewBpOnboarding from "@/ui/onboardings/new-bp-onboarding";
+import { getSession } from "@/services/supabase/auth.service.js";
 import { useEffect, useState } from "react";
 import "./page.css";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { getSession } from "@/services/supabase/auth.service";
 
 export default function NewBp() {
   const [start, setStart] = useState(false);
