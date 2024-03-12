@@ -1,13 +1,15 @@
 "use client";
 
 import { deleteUserAuth } from "@/services/supabase/auth.service";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
 
 export default function DeletePage() {
   const [userId, setUserId] = useState("");
+  const supabase = createClientComponentClient();
   const handleDeleteUser = async (e) => {
     e.preventDefault();
-    await deleteUserAuth(userId);
+    await deleteUserAuth(supabase, userId);
   };
   return (
     <section className="profile-page">
