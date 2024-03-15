@@ -1,8 +1,8 @@
 import { RegisterBpIcon } from "@/ui/icons/new-bp-icon";
 import Button from "@/ui/btn/button";
-import "./onboarding.css";
+import "../styles/step-form-onboarding.css";
 
-const NewBpOnboarding = ({ functionProp }) => {
+const StepFormOnboarding = ({ functionProp }) => {
   return (
     <div className="onboarding">
       <div className="onboarding__icon-container">
@@ -20,4 +20,4 @@ const NewBpOnboarding = ({ functionProp }) => {
   );
 };
 
-export default NewBpOnboarding;
+export default StepFormOnboarding;

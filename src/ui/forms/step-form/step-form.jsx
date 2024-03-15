@@ -1,27 +1,33 @@
 "use client";
-import NewBpOnboarding from "@/ui/onboardings/new-bp-onboarding";
 import { useState } from "react";
+// components
+import StepFormOnboarding from "./components/step-form-onboarding";
+import StepFormStarted from "./components/step-form-started";
 import AuthForm from "../auth-form/auth-form";
+import SectionWrapper from "@/ui/section/section";
+
+import { useStepFormStore } from "@/store/court-store";
+
 const StepForm = ({ session }) => {
-  const [startRegister, setStartRegister] = useState(false);
+  const { started, startedChange } = useStepFormStore();
   const [showAuthForm, setShowAuthForm] = useState(false);
 
-  function handleStartRegister() {
+  function handleStartRegisterCourt() {
     if (!session) {
       setShowAuthForm(true);
     } else {
-      setStartRegister(true);
+      startedChange();
     }
   }
 
   return (
-    <section>
-      {startRegister && <div>step form iniciate</div>}
+    <SectionWrapper variant={"step-form"}>
+      {started && <StepFormStarted />}
       {showAuthForm && <AuthForm />}
-      {!startRegister && !showAuthForm && (
-        <NewBpOnboarding functionProp={handleStartRegister} />
+      {!started && !showAuthForm && (
+        <StepFormOnboarding functionProp={handleStartRegisterCourt} />
       )}
-    </section>
+    </SectionWrapper>
   );
 };
 
