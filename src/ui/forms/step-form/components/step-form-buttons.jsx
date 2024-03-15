@@ -16,7 +16,12 @@ const StepFormButtons = () => {
   // render element
   return (
     <div className="step-form__buttons">
-      <Button onClick={prevStep} variant={"secundary"} type={"button"}>
+      <Button
+        onClick={prevStep}
+        variant={"secundary"}
+        type={"button"}
+        disable={currentStep === 0 ? true : false}
+      >
         {currentStep === 0 ? "" : "atras"}
       </Button>
 
