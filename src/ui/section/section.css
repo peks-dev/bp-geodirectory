@@ -1,0 +1,14 @@
+.section {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.section[data-variant="step-form"] {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  max-width: 80rem;
+  margin: auto;
+}
