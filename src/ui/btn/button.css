@@ -10,9 +10,6 @@
 }
 
 /* states */
-.btn:hover {
-  color: var(--secundary);
-}
 .btn:active,
 .btn--link:hover {
   transform: scale(1.1);
@@ -24,6 +21,9 @@
   color: var(--ternary);
 
   transition: transform 0.2s linear;
+}
+.btn[data-variant="primary"]:hover {
+  color: var(--secundary);
 }
 
 .btn[data-variant="secundary"]:hover {
