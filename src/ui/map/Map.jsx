@@ -3,15 +3,7 @@ import { useRef, useEffect } from "react";
 import { openStreetMapTile } from "./lib/tile-layers";
 import "./map.css";
 
-function Map({
-  mapPosition,
-  zoomLevel,
-  CourtsMarkers,
-  DraggMarker,
-  singleMarker,
-  mapRef,
-  mapPositionSave,
-}) {
+function Map({ mapPosition, zoomLevel, children }) {
   const mapContainer = useRef(null);
   const mapInstance = useRef(null);
 
@@ -42,10 +34,7 @@ function Map({
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <div ref={mapContainer} style={{ height: "100%", width: "100%" }} />
-      {CourtsMarkers}
-      {DraggMarker}
-      {singleMarker}
-      {mapPositionSave}
+      {children}
     </div>
   );
 }
