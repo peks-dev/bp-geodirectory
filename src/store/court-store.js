@@ -4,6 +4,7 @@ import { persist } from "zustand/middleware";
 const initialState = {
   started: false,
   currentStep: 0,
+  location: null,
 };
 
 export const useStepFormStore = create(
