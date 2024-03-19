@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { logout } from "@/services/supabase/auth.service";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useStepFormStore } from "@/store/court-store";
+import { useStepFormStore } from "@/context/step-form-store";
 import Button from "@/ui/btn/button";
 
 export const LogoutBtn = () => {
