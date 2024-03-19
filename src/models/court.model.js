@@ -18,7 +18,7 @@ class CourtModel {
     this.floor_type = floor_type;
     this.roof = false;
     this.location = {
-      coordinates: {},
+      coordinates: null,
       country: null,
       state: null,
       city: null,
