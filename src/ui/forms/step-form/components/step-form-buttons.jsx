@@ -1,6 +1,6 @@
 import "../styles/step-form-buttons.css";
 
-import { useStepFormStore } from "@/store/court-store";
+import { useStepFormStore } from "@/context/step-form-store";
 
 // Components
 import Button from "@/ui/btn/button";

@@ -10,7 +10,7 @@ import StepServices from "./steps/step-description";
 
 import StepFormButtons from "./step-form-buttons";
 
-import { useStepFormStore } from "@/store/court-store";
+import { useStepFormStore } from "@/context/step-form-store";
 
 const StepFormContent = () => {
   const stepToRender = useStepFormStore((state) => state.currentStep);
@@ -33,10 +33,6 @@ const StepFormContent = () => {
         return null;
     }
   };
-
-  function registerCourt() {
-    alert("datos enviados");
-  }
 
   return (
     <form className="step-form__content">

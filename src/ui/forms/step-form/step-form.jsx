@@ -6,7 +6,7 @@ import StepFormStarted from "./components/step-form-started";
 import AuthForm from "../auth-form/auth-form";
 import SectionWrapper from "@/ui/section/section";
 
-import { useStepFormStore } from "@/store/court-store";
+import { useStepFormStore } from "@/context/step-form-store";
 
 const StepForm = ({ session }) => {
   const { started, startedChange } = useStepFormStore();

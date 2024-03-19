@@ -1,27 +1,66 @@
 "use client";
 import "./styles/step-location.css";
-// import Map from "@/ui/map/Map";
+// components
 import Button from "@/ui/btn/button";
-import { useState } from "react";
-import { useUserStore } from "@/context/user-store";
 import MapLeaflet from "@/ui/map-leaflet/map-leaflet";
+import DraggableMarker from "@/ui/draggable-marker/draggable-marker";
+// global states
+import { useUserStore } from "@/context/user-store";
+import { useEffect, useState } from "react";
+// utilities
+import { saveToLocalStorage } from "@/utilities/save-to-local-storage.utilitie";
+import { MapMovementHandler } from "@/utilities/map-movement-handler";
 
 const StepLocation = () => {
-  const { location, getLocation } = useUserStore();
-  const [mapLocation, setMapLocation] = useState(location);
+  const { userCoordinates, getUserCoordinates } = useUserStore();
+  const [mapCenter, setMapCenter] = useState(null);
+  const [mapZoom, setMapZoom] = useState(15);
 
-  // Añade un marcador arrastrable al mapa
-  {
-    /*<Map mapPosition={mapLocation} zoomLevel={13}></Map>  */
+  const stepFormData = JSON.parse(localStorage.getItem("stepFormData"));
+
+  useEffect(() => {
+    // Establecer map center
+    if (!stepFormData || !stepFormData.location.coordinates) {
+      setMapCenter(userCoordinates);
+    } else {
+      setMapCenter(stepFormData.location.coordinates);
+    }
+    // Establecer zoom
+    const zoomStorage = JSON.parse(localStorage.getItem("mapZoom"));
+    if (zoomStorage) {
+      setMapZoom(zoomStorage.zoom);
+    }
+  }, [userCoordinates]);
+
+  function HandleRenderMap() {
+    getUserCoordinates();
+    setMapCenter(userCoordinates);
   }
+
+  function handleMapZoom(newZoom) {
+    saveToLocalStorage("mapZoom", { zoom: newZoom });
+  }
+  function handleDragEnd(newCoordinates) {
+    stepFormData.location.coordinates = newCoordinates;
+    saveToLocalStorage("stepFormData", stepFormData);
+  }
+
   return (
     <div className="step-location">
-      {mapLocation ? (
-        <MapLeaflet coordinates={mapLocation} zoom={13}></MapLeaflet>
+      {mapCenter && mapZoom ? (
+        <MapLeaflet coordinates={mapCenter} zoom={mapZoom}>
+          <DraggableMarker
+            markerPosition={mapCenter}
+            onDragEnd={handleDragEnd}
+          />
+          <MapMovementHandler onZoomChange={handleMapZoom} />
+        </MapLeaflet>
       ) : (
-        <Button type="button" onClick={getLocation} variant={"primary"}>
-          user positon
-        </Button>
+        <div className="step-location__btn-container">
+          <Button type="button" onClick={HandleRenderMap} variant={"primary"}>
+            Obtener mi posicion
+          </Button>
+        </div>
       )}
     </div>
   );

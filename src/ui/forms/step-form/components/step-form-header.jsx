@@ -8,7 +8,7 @@ import CourtIcon from "@/ui/icons/court-icon";
 import DayIcon from "@/ui/icons/day-icon";
 import ListIcon from "@/ui/icons/list-icon";
 
-import { useStepFormStore } from "@/store/court-store";
+import { useStepFormStore } from "@/context/step-form-store";
 
 const StepFormHeader = () => {
   const currentStep = useStepFormStore((state) => state.currentStep);
