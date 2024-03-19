@@ -2,7 +2,6 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { openStreetMapTile } from "@/ui/map/lib/tile-layers";
-import { Children } from "react";
 
 const MapLeflet = ({ coordinates, zoom, children }) => {
   return (
