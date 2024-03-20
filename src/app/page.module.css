@@ -1,5 +1,5 @@
 .main {
-  flex: 1 1 80dvh;
+  flex: 1 1 80%;
   width: 100%;
   position: relative;
   display: flex;
@@ -7,8 +7,8 @@
 }
 .mapWrapper {
   position: fixed;
-  height: 100dvh;
-  width: 100dvh;
+  height: 100%;
+  width: 100%;
   top: 0;
   left: 0;
   z-index: 1;

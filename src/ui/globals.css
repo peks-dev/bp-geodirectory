@@ -168,8 +168,8 @@ svg {
 /* Configuramos la tipografía para toda la web */
 body {
   position: relative;
-  min-height: 100dvh;
-  min-width: 100dvw;
+  height: 100dvh;
+  width: 100dvw;
   font-size: 100%;
   color: var(--text);
   background-color: var(--primary);

@@ -48,15 +48,13 @@ const StepLocation = () => {
   return (
     <div className="step-location">
       {mapCenter && mapZoom ? (
-        <div className="step-location__map">
-          <MapLeaflet coordinates={mapCenter} zoom={mapZoom}>
-            <DraggableMarker
-              markerPosition={mapCenter}
-              onDragEnd={handleDragEnd}
-            />
-            <MapMovementHandler onZoomChange={handleMapZoom} />
-          </MapLeaflet>
-        </div>
+        <MapLeaflet coordinates={mapCenter} zoom={mapZoom}>
+          <DraggableMarker
+            markerPosition={mapCenter}
+            onDragEnd={handleDragEnd}
+          />
+          <MapMovementHandler onZoomChange={handleMapZoom} />
+        </MapLeaflet>
       ) : (
         <div className="step-location__btn-container">
           <Button type="button" onClick={HandleRenderMap} variant={"primary"}>
