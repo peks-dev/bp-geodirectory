@@ -18,9 +18,7 @@ const UserMarkerIcon = L.icon({
 });
 
 export const UserPositionMarker = ({ markerPosition }) => {
-  const { lat, lng } = markerPosition;
-  console.log(markerPosition);
-  return <Marker position={{ lat, lng }} icon={UserMarkerIcon} />;
+  return <Marker position={markerPosition} icon={UserMarkerIcon} />;
 };
 
 export default UserPositionMarker;
