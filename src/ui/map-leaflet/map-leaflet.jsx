@@ -2,9 +2,10 @@
 import "leaflet/dist/leaflet.css";
 import "./map-leaflet.css";
 import { MapContainer, TileLayer } from "react-leaflet";
-import { openStreetMapTile } from "@/ui/map/lib/tile-layers";
+import { openStreetMapTile } from "./tile-layers";
+import UserPositionMarker from "@/ui/user-marker/user-marker";
 
-const MapLeflet = ({ coordinates, zoom, children }) => {
+const MapLeflet = ({ coordinates, zoom, children, userPosition, data }) => {
   return (
     <div className="map-wrapper">
       <MapContainer
@@ -17,6 +18,7 @@ const MapLeflet = ({ coordinates, zoom, children }) => {
           url={openStreetMapTile.url}
         />
         {children}
+        {userPosition && <UserPositionMarker markerPosition={userPosition} />}
       </MapContainer>
     </div>
   );

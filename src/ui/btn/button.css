@@ -30,6 +30,18 @@
   color: var(--accent);
 }
 
+.btn[data-variant="map-control"] {
+  background-color: var(--secundary);
+  color: var(--ternary);
+}
+.btn[data-variant="map-control"]:hover {
+  color: var(--accent);
+}
+.btn[data-variant="map-control map-control--active"] {
+  background-color: var(--accent);
+  color: var(--secundary);
+}
+
 .btn--link {
   text-decoration: underline;
 }
