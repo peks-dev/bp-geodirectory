@@ -1,12 +1,12 @@
 .step-form__content {
-  flex: 1 0 73%;
+  flex: 1 0 70dvh;
   width: 95%;
   border-radius: 1rem;
   background-color: var(--secundary);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem auto;
 }
 .step-form__fields-wrapper {
   flex: 1 0 80%;

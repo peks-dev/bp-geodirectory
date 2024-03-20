@@ -21,13 +21,10 @@
   margin-top: 0.5rem;
   font-size: 1.2rem;
 }
-.form__close {
+.form__img {
   /* El btn svg */
-  background-color: var(--accent);
-  color: var(--ternary);
-  padding: 0.2rem 1.2rem;
-  border-radius: 2rem;
-  transition: transform 0.2s linear;
+  width: 5rem;
+  height: 5rem;
 }
 .form__close:hover {
   color: var(--secundary);
