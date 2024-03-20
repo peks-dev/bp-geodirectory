@@ -3,3 +3,11 @@
   width: 100%;
   position: relative;
 }
+.mapWrapper {
+  position: fixed;
+  height: 100dvh;
+  width: 100dvh;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
