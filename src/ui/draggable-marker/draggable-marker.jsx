@@ -12,7 +12,7 @@ const CourtMarkerIcon = L.icon({
   shadowAnchor: null,
   shadowUrl: null,
   shadowSize: null,
-  iconSize: [24, 35],
+  iconSize: [35, 35],
   className: "icono-masiso",
 });
 
