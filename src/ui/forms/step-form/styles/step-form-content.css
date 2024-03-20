@@ -9,5 +9,5 @@
   margin: 0 auto 2rem auto;
 }
 .step-form__fields-wrapper {
-  flex: 1 0 80%;
+  flex: 1 1 65dvh;
 }
