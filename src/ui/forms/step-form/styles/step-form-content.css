@@ -10,4 +10,5 @@
 }
 .step-form__fields-wrapper {
   flex: 1 1 65dvh;
+  display: flex;
 }
