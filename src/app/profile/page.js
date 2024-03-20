@@ -13,8 +13,6 @@ export default async function Profile() {
   console.log(session);
 
   return (
-    <section className="profile-page">
-      {session ? <ProfileWrapper userId={session.user.id} /> : <AuthForm />}
-    </section>
+    <>{session ? <ProfileWrapper userId={session.user.id} /> : <AuthForm />}</>
   );
 }
