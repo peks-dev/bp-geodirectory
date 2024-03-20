@@ -6,7 +6,7 @@
 
 .section[data-variant="step-form"] {
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-start;
   gap: 2rem;
   max-width: 80rem;
