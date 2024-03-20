@@ -14,9 +14,7 @@ export default function MapPage() {
   const [mapCenter, setMapCenter] = useState(position);
   return (
     <section className={styles.mapWrapper}>
-      <DynamicMap coordinates={mapCenter} zoom={13}>
-        <UserPositionMarker markerPosition={mapCenter} />
-      </DynamicMap>
+      <DynamicMap coordinates={mapCenter} zoom={13}></DynamicMap>
     </section>
   );
 }
