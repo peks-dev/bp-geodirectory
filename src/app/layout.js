@@ -2,7 +2,7 @@ import Navbar from "@/ui/navbar/navbar";
 import "@/ui/globals.css";
 import "@/ui/headings.css";
 import styles from "./page.module.css";
-import { mulish, blackHanSans, balsamiqSans } from "@/ui/fonts";
+import { blackHanSans, balsamiqSans } from "@/ui/fonts";
 
 export const metadata = {
   title: "Create Next App",

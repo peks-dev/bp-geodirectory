@@ -168,8 +168,8 @@ svg {
 /* Configuramos la tipografía para toda la web */
 body {
   position: relative;
-  min-height: 100vh;
-  min-width: 100vw;
+  min-height: 100dvh;
+  min-width: 100dvw;
   font-size: 100%;
   color: var(--text);
   background-color: var(--primary);
@@ -185,4 +185,6 @@ body {
   -webkit-font-smoothing: antialiased;
   /* opcional */
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
 }
