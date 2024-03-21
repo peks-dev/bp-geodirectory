@@ -13,9 +13,3 @@
   left: 0;
   z-index: 1;
 }
-.btnsWrapper {
-  position: absolute;
-  top: 30%;
-  right: 2rem;
-  z-index: 3;
-}

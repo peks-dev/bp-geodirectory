@@ -1,38 +1,13 @@
-"use client";
 import styles from "./page.module.css";
-import MapLeaflet from "@/ui/map-leaflet/map-leaflet";
-import Button from "@/ui/btn/button";
-import { useEffect, useState } from "react";
-import { useUserStore } from "@/context/user-store";
+import dynamic from "next/dynamic";
 
 export default function MapPage() {
-  const { userCoordinates, getUserCoordinates } = useUserStore();
-  const [mapCenter, setMapCenter] = useState(() => {
-    if (userCoordinates) {
-      return userCoordinates;
-    } else {
-      return { lat: 40.12324, lng: 20.12312 };
-    }
+  const DynamicMap = dynamic(() => import("@/ui/home-map/home-map"), {
+    ssr: false,
   });
-
-  async function handleUserPosition() {
-    await getUserCoordinates();
-  }
-
   return (
     <section className={styles.mapWrapper}>
-      <MapLeaflet coordinates={mapCenter} zoom={14} />
-      <div className={styles.btnsWrapper}>
-        <Button
-          type={"button"}
-          variant={`${
-            userCoordinates ? "map-control map-control--active" : "map-control"
-          }`}
-          onClick={handleUserPosition}
-        >
-          ubicacion
-        </Button>
-      </div>
+      <DynamicMap />
     </section>
   );
 }
