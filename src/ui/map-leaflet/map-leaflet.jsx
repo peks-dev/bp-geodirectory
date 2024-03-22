@@ -5,13 +5,14 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { openStreetMapTile } from "./tile-layers";
 import UserPositionMarker from "@/ui/user-marker/user-marker";
 
-const MapLeflet = ({ coordinates, zoom, children, userPosition, data }) => {
+const MapLeflet = ({ coordinates, zoom, children, userPosition, mapRef }) => {
   return (
     <div className="map-wrapper">
       <MapContainer
         center={coordinates}
         zoom={zoom}
         style={{ height: "100%", width: "100%" }}
+        mapRef={mapRef}
       >
         <TileLayer
           attribution={openStreetMapTile.attribution}
