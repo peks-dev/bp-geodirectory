@@ -9,13 +9,13 @@
   text-transform: uppercase;
 }
 
-/* states */
+/* - - - - - - */
 .btn:active,
 .btn--link:hover {
   transform: scale(1.1);
 }
 
-/* Variants */
+/* - - - - - - */
 .btn[data-variant="primary"] {
   background-color: var(--accent);
   color: var(--ternary);
@@ -25,11 +25,11 @@
 .btn[data-variant="primary"]:hover {
   color: var(--secundary);
 }
-
+/* - - - - - - */
 .btn[data-variant="secundary"]:hover {
   color: var(--accent);
 }
-
+/* - - - - - - */
 .btn[data-variant="map-control"] {
   background-color: var(--secundary);
   color: var(--ternary);
@@ -41,7 +41,7 @@
   background-color: var(--accent);
   color: var(--secundary);
 }
-
+/* - - - - - - */
 .btn--link {
   text-decoration: underline;
 }
